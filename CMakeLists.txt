@@ -20,10 +20,15 @@ add_library(client_lib STATIC client/client.cc)
 
 add_executable(A demo/A.cc ${SERVER} ${UTILS})
 add_executable(B demo/B.cc ${CLIENT} ${UTILS})
+target_link_libraries(A PRIVATE pthread)
+target_link_libraries(B PRIVATE pthread)
 
 add_executable(one-time_recv demo/one-time_recv.cc ${CLIENT} ${SERVER} ${UTILS})
+target_link_libraries(one-time_recv PRIVATE pthread)
 
 add_executable(server demo/server_main.cc ${SERVER} ${UTILS})
 add_executable(client demo/client_main.cc ${CLIENT} ${UTILS})
+target_link_libraries(server PRIVATE pthread)
+target_link_libraries(client PRIVATE pthread)
 
 include(tests/tests.cmake)

@@ -7,7 +7,7 @@ add_library(codec_test_harness_lib STATIC tests/codec_test_harness.cc)
 
 macro (add_test_exec exec_name)
     add_executable ("${exec_name}" "tests/${exec_name}.cc")
-    target_link_libraries ("${exec_name}" ${ARGN})
+    target_link_libraries ("${exec_name}" PRIVATE ${ARGN} pthread)
 endmacro (add_test_exec)
 
 add_test_exec(socket_member_function socket_test_harness_lib client_lib server_lib msg_queue_lib tcp_socket_lib)
