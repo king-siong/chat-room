@@ -27,7 +27,6 @@ int main(int argc, char const* argv[]) {
     TCPSocketPtr server_sock = std::make_shared<TCPSocket>(DEFAULT_IP, DEFAULT_PORT);
     Server server(server_sock);
 
-    // std::cout << server_sock << std::endl;
     std::cout << "server is running on " << *server.sock() << std::endl;
 
     if (server.bind() < 0) { return -1; }
@@ -40,7 +39,6 @@ int main(int argc, char const* argv[]) {
     thread_pool.enqueue(send_msg, &server);
 
     while (true) {
-        // TCPSocketPtr client_sock = std::make_shared<TCPSocket>(server.accept());
         TCPSocketPtr client_sock = server.accept();
 
         std::cout << "client " << *client_sock << " has joined the room." << std::endl;
