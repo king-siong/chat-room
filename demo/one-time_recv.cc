@@ -22,14 +22,14 @@ int main() {
     std::mutex mtx;
 
     try {
-        std::thread server_th([&] {
-            if (server.bind() < 0) {
-                throw "server: bind error";
-            }
-            if (server.listen() < 0) {
-                throw "server: listen error";
-            }
+        if (server.bind() < 0) {
+            throw "server: bind error";
+        }
+        if (server.listen() < 0) {
+            throw "server: listen error";
+        }
 
+        std::thread server_th([&] {
             TCPSocketPtr client_sock = server.accept();
 
             server.add_client(client_sock);
