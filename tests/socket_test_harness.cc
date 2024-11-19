@@ -47,15 +47,15 @@ void P2P::execute(TCPSocketPtr &sock) const {
 
     Server server(sock);
 
+    if (server.bind() < 0) {
+        throw SocketViolation("server: bind error");
+    }
+
+    if (server.listen() < 0) {
+        throw SocketViolation("server: listen error");
+    }
+
     std::thread server_th([&] {
-        if (server.bind() < 0) {
-            throw SocketViolation("server: bind error");
-        }
-
-        if (server.listen() < 0) {
-            throw SocketViolation("server: listen error");
-        }
-
         TCPSocketPtr client_sock = sock->socket_accept();
 
         size_t _ = _server_msgs.size();
