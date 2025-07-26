@@ -7,7 +7,7 @@ This repository contains the starter code for the lab project of COMP461205: Com
 1. Clone the repository: 
 
 ```bash
-git clone https://github.com/KingSiong/chat-room.git
+git clone https://github.com/king-siong/chat-room.git
 ```
 
 2. Build the project:
